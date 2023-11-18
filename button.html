@@ -25,14 +25,15 @@
             let timer;
             return function(...args){
                 if(timer) clearTimeout(timer)
-
+                console.log(a)
                 timer = setTimeout(() => {
                     cb()
                 }, d);
             }
         }
-
-        const actualDebounce = mydebounce(()=>{
+        
+        let a = 'apple'
+        const actualDebounce = mydebounce((a)=>{
             count.innerHTML = ++i;
         },300)
     </script>
