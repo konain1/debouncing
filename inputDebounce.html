@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text " placeholder="type here" id="inp" onkeyup="xyz()">
+    <p>triggered : <span id="tri"> : 0</span></p>
+
+
+    <script>
+        let count = 0;
+        const inp = document.getElementById('inp')
+        const tri = document.querySelector('#tri')
+
+        function deb(fn,d){
+            let timer;
+            return function(){
+                if(timer) clearTimeout(timer)
+
+                timer = setTimeout(() => {
+                    fn();
+                }, d);
+            }
+        }
+        const xyz =  deb(()=>{
+            tri.innerHTML = ++count;
+        },800)
+
+
+    </script>
+</body>
+</html>
