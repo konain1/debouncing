@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+   
+    <button id="btn">increase</button>
+    <p>count is : <span id="count">count : </span></p>
+   
+    <p>triggered after 800ms <span id="tri"> : 0</span></p>
+    
+    <script>
+         let c = 0
+         let a = 0
+        const btn = document.querySelector('#btn')
+        const count = document.querySelector('#count')
+        const tri = document.querySelector('#tri')
+
+        btn.addEventListener('click',debounce)
+
+        function debounce(){
+            console.log('debounce')
+            count.innerHTML = ++c;
+            abc();
+
+        }
+
+        function mydebounce(fn,d){
+
+            let timer;
+            return function(){
+                if(timer) clearTimeout(timer);
+
+                timer = setTimeout(() => {
+                    
+                    fn();
+                }, d);
+            }
+        }
+
+        const abc  = mydebounce(()=>{
+            tri.innerHTML = ++a;
+        },800)
+
+    </script>
+</body>
+</html>
