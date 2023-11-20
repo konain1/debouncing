@@ -16,5 +16,18 @@ const area = function(x){
     return Math.PI * x * x;
 }
 
+function add(x,y){
+    return x+y
+}
 
-console.log(calculate(arr,area))
+function sub(x,y){
+    return x-y
+}
+
+
+function calculateFn(fn,a,b){
+return fn(a,b);
+}
+
+console.log(calculateFn(add,1,2))
+// console.log(calculate(arr,area))
