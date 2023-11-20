@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>throattle</title>
+</head>
+<body>
+    <button id="btn">click</button>
+    <p>triggred every time : <span id="trig">0</span>
+    </p>
+    <p>every 800 ms : <span id="thro">0</span></p>
+    
+    <script>
+        let i = 0;
+        let j = 0;
+        const trig = document.getElementById('trig')
+        const thro = document.getElementById('thro')
+
+        const btn = document.getElementById('btn')
+
+       
+        let start = new Date().getTime();
+       
+
+        function mythroattle(fn,d){
+           
+           let flag=true
+            return function(...args){
+
+                if(!flag) return;  
+                   
+                fn();
+                flag = false
+                setTimeout(() => {
+                    flag = true
+                }, d);
+            
+            }
+        }
+
+        const throattle = mythroattle(()=>{
+            console.log('throattle')
+            thro.innerHTML = ++j;
+        },2000)
+
+        btn.addEventListener('click',()=>{
+
+            trig.innerHTML = ++i;
+            console.log("i")
+             throattle();
+            })
+    </script>
+</body>
+</html>
