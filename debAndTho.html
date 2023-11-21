@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>debouncing event <span id="dcount">0</span> </p>
+    <input type="text" id="inp" onkeydown="fn1()" placeholder="type here">
+
+    <p>throatle event <span id="tcount"> 0</span> </p>
+    <button id="btn" >click</button>
+
+    <script>
+    let t_count = 0
+    let d_count = 0
+
+    const Dcount = document.getElementById('dcount')
+    const Tcount = document.getElementById('tcount')
+    const btn = document.getElementById('btn')
+    const inp = document.getElementById('inp')
+
+
+    function fn1(){
+        thoattle();
+    }
+
+    const mythroattle = (cbfn,d)=>{
+
+        let flag = true
+
+        return (...args)=>{
+            if(flag){
+                cbfn();
+                flag = false
+                setTimeout(() => {
+                  flag=true  
+                }, d);
+            }
+        }
+    }
+ 
+    const thoattle = mythroattle(()=>{
+        console.log('keypress')
+        Tcount.innerHTML = ++t_count
+    },600)
+    const myDebounce = (callback,timer)=>{
+
+        let timerId;
+        return ()=>{
+            if(timerId) clearTimeout(timerId)
+            timerId = setTimeout(() => {
+                callback();
+            }, timer);
+        }
+    }
+    const debounce = myDebounce(()=>{
+        console.log('clicked')
+        Dcount.innerHTML = ++d_count
+    },800)
+
+    btn.addEventListener('click' ,debounce)
+    
+    </script>
+    
+</body>
+</html>
